@@ -20,12 +20,12 @@ int main(int argc, char* argv[])
 
         printCells(board, boardSize);
         boardChanged = updateCellState(board, boardSize);
-
+        
         cin.get();
         stage++;
     }
 
     // Clean up board if cells were allocated on the heap
-
+    
     return 0;
 }
