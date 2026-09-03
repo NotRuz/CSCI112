@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
     readBoard(board, boardSize);
 
     while(boardChanged) {
-        clearScreen();
+        // clearScreen();
         cout << "Stage: " << stage << endl;
 
         printCells(board, boardSize);
@@ -26,6 +26,13 @@ int main(int argc, char* argv[])
     }
 
     // Clean up board if cells were allocated on the heap
-    
+    for(size_t i = 0; i < boardSize; i++)
+    {
+        for (size_t j = 0; j < boardSize; j++)
+        {
+            delete board[i][j];
+        }
+    }
+
     return 0;
 }

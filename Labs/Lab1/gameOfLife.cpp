@@ -85,83 +85,24 @@ Must use the x, y position stored with each cell to determine which neighbors th
 void findNumNeighbors(Cell* board[][10], int boardSize, Cell* curCell) 
 {
     curCell->numLiveNeighbors = 0;
-    int top;
-    int bottom;
-    int topRight;
-    int topLeft;
-    int bottomRight;
-    int bottomLeft;
-    int right;
-    int left;
-    // int i = curCell->y;
-    // int j = curCell->x;
-    for(int i = 0; i < boardSize; i++)
+
+    for (int i = -1; i < 2; i++)
     {
-        for(int j = 0; j < boardSize; j++)
+        for (int j = -1; j < 2; j++)
         {
-            board[i][j]->numLiveNeighbors = 0;
-
-            if (i > 0)
+            if (i == 0 && j == 0)
             {
-                bottom = board[i - 1][j]->state;
+                continue;
             }
-            if (i > 0 && j < (boardSize - 1))
+            int y = curCell->y + i;
+            int x = curCell->x + j;
+
+            if (y >= 0 && y < boardSize && x >= 0 && x < boardSize)
             {
-                bottomRight = board[i - 1][j + 1]->state;
+                curCell->numLiveNeighbors += board[y][x]->state;
             }
-            if (i > 0 && j > 0)
-            {
-                bottomLeft = board[i - 1][j - 1]->state;
-            }
-            if (i < (boardSize - 1))
-            {
-                top = board[i + 1][j]->state;
-            }
-            if (i < (boardSize - 1) && j < (boardSize - 1))
-            {
-                topRight = board[i + 1][j + 1]->state;
-            }
-            if (i < (boardSize - 1) && j > 0)
-            {
-                topLeft = board[i + 1][j - 1]->state;
-            }
-            if (j < (boardSize - 1))
-            {
-                right = board[i][j + 1]->state;
-            }
-            if (j > 0)
-            {
-                left = board[i][j - 1]->state;
-            }
-
-            board[i][j]->numLiveNeighbors = (right + left + top + topLeft + topRight + bottom + bottomLeft + bottomRight);
-            // if (i > 0)
-            //     curCell->numLiveNeighbors += board[i - 1][j]->state;
-
-            // if (i < boardSize - 1)
-            //     curCell->numLiveNeighbors += board[i + 1][j]->state;
-
-            // if (j > 0)
-            //     curCell->numLiveNeighbors += board[i][j - 1]->state;
-
-            // if (j < boardSize - 1)
-            //     curCell->numLiveNeighbors += board[i][j + 1]->state;
-
-            // if (i > 0 && j > 0)
-            //     curCell->numLiveNeighbors += board[i - 1][j - 1]->state;
-
-            // if (i > 0 && j < boardSize - 1)
-            //     curCell->numLiveNeighbors += board[i - 1][j + 1]->state;
-
-            // if (i < boardSize - 1 && j > 0)
-            //     curCell->numLiveNeighbors += board[i + 1][j - 1]->state;
-
-            // if (i < boardSize - 1 && j < boardSize - 1)
-            //     curCell->numLiveNeighbors += board[i + 1][j + 1]->state;
         }
     }
-
-    
 }
 
 /*
@@ -175,9 +116,9 @@ Any dead cell with exactly three live neighbors becomes a live cell, as if by re
 
 Return if you updated cells or not to break out of while loop from main.
 */
+//FIXME: Rewrite this function using a diffrent way to achieve the same thing
 bool updateCellState(Cell* board[][10], int boardSize) 
 {
-    // findNumNeighbors(board, boardSize, nullptr);
     int newstate[10][10];
 
     for(int i = 0; i < boardSize; i++)
