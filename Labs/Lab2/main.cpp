@@ -133,7 +133,7 @@ void printPoints(points::Point *pointList[], size_t arrSize)
 
 points::Point *promptTestPoint()
 {
-    int x = 999;
+    int x = 999; 
     int y = 999;
     while (!(x >= -100 && x <= 100))
     {
