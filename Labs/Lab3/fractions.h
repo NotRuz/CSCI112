@@ -23,7 +23,7 @@ namespace fractions
             /*
             Function to simplify Fraction to the GCD.
             Should call gcd method from inside simplify
-
+            
             Overloaded method is static so it can be called without instantiating class
             Takes in a Fraction and returns a simplified Fraction
             */
@@ -47,7 +47,7 @@ namespace fractions
             Each overload should calculate a new fraction from this and the passed in fraction
             make sure you simplify the fraction after calculating the new fraction.
             Return new fraction
-
+            
             Keep note that creating an instance of a fraction inside of the fraction class will have
             access to private attributes!
             */
